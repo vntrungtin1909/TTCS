@@ -1,0 +1,1 @@
+sort(a, a + 1000, SS_trong_so);
