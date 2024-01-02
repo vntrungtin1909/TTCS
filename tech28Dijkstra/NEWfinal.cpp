@@ -107,7 +107,7 @@ public:
                 j = pre[j];
             }
             reverse(begin(path), end(path));
-            cout << "tu 0 den " << i << endl;
+            cout << "tu " << s <<  " den " << i << endl;
             for (int x : path)
             {
                 cout << x << " ";

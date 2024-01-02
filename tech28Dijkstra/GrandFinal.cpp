@@ -36,6 +36,10 @@ public:
 
     GraphNhapXuat()
     {
+#ifndef ONLINE_JUDGE
+        freopen("input1.txt", "r", stdin);
+        freopen("output2612.txt", "w", stdout);
+#endif
         cin >> so_luong_dinh >> so_luong_canh;
         // Graph graph();
         // ifstream fileNhap("input1.txt");
@@ -55,14 +59,15 @@ public:
         //     fileNhap.close();
         // }
     }
-    void duongdi()
+    void duongdi(vector<ll>& khoang_cach, int path[])
     {
+        
     }
 };
 
 class Graph
 {
-private:
+protected:
     int n, m;      // số lượng đỉnh và số lượng cạnh
     Dinh adj[100]; // danh sách kề
 
@@ -87,8 +92,6 @@ public:
     {
         adj[dinh].c[i].dinh = dinh_ke;
         adj[dinh].c[i].trong_so = trong_so;
-        // adj[dinh_ke].c[i].dinh = dinh;
-        // adj[dinh_ke].c[i].trong_so = trong_so;
         adj[dinh].so_canh_ke++;
     }
 
@@ -109,7 +112,7 @@ protected:
 public:
     Dijkstra(const GraphNhapXuat &input) : n(input.so_luong_dinh) {}
 
-    virtual stack<int> NganNhat(Graph &graph, int batdau, int dich)
+    virtual void NganNhat(Graph &graph, int batdau)
     {
         vector<ll> d(n + 1, INF); // mảng lưu đường đi ngắn nhất
         d[batdau] = 0;
@@ -121,22 +124,6 @@ public:
         bool first = true;
         while (1)
         {
-            if (a[0].dinh == dich)
-            {
-                int j = dich;
-                stack<int> path;
-                while (1)
-                {
-                    path.push(j);
-                    if (j == batdau)
-                    {
-                        path.push(d[dich]);
-                        return path;
-                    }
-
-                    j = pre[j];
-                }
-            }
             int i = 0;
             int u = a[0].dinh;
             int kc = a[0].trong_so;
@@ -174,13 +161,9 @@ public:
                         {
                             if (a[i].trong_so > a[j].trong_so)
                             {
-                                Canh c;
-                                c.dinh = a[i].dinh;
-                                c.trong_so = a[i].trong_so;
-                                a[i].dinh = a[j].dinh;
-                                a[i].trong_so = a[j].trong_so;
-                                a[j].dinh = c.dinh;
-                                a[j].trong_so = c.trong_so;
+                                Canh c = a[i];
+                                a[i] = a[j];
+                                a[j] = c;
                             }
                         }
                     }
@@ -188,45 +171,28 @@ public:
                 }
             }
         }
-    }
-    void hienthi(Graph &graph)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            stack<int> ans = NganNhat(graph, 1, 3);
 
-            while (!ans.empty())
-            {
-                cout << ans.top() << " ";
-                ans.pop();
-            }
-            cout << endl;
-        }
     }
+
     ~Dijkstra() = default;
 };
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-    freopen("input1.txt", "r", stdin);
-    freopen("output2612.txt", "w", stdout);
-#endif
-
     GraphNhapXuat userInput;
     Graph graph(userInput);
     graph.nhap();
 
     Dijkstra dijkstra(userInput);
     cout << "dijkstra: " << endl;
-    stack<int> ans = dijkstra.NganNhat(graph, 4, 3);
+    // stack<int> ans = dijkstra.NganNhat(graph, 0, 1);
 
-    while (!ans.empty())
-    {
-        cout << ans.top() << " ";
-        ans.pop();
-    }
-    cout << endl;
+    // while (!ans.empty())
+    // {
+    //     cout << ans.top() << " ";
+    //     ans.pop();
+    // }
+    // cout << endl;
 
     return 0;
 }

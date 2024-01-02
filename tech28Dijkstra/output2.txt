@@ -1,15 +1,15 @@
 dijkstra: 
-tu 0 den 0
-0 
-tu 0 den 1
-0 2 1 
-tu 0 den 2
-0 2 
-tu 0 den 3
-0 2 3 
-tu 0 den 4
-0 4 
+tu 3 den 0
+3 2 0 
+tu 3 den 1
+3 2 1 
+tu 3 den 2
+3 2 
+tu 3 den 3
+3 
+tu 3 den 4
+3 2 1 4 
 
 astar: 
-5
-0 2 3 
+0
+3 
