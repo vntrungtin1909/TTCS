@@ -1,2 +1,15 @@
 dijkstra: 
+<<<<<<< Updated upstream
 5 0 2 3 
+=======
+khoang cach tu 4 den 0 la: 4
+4 0 
+khoang cach tu 4 den 1 la: 1
+4 1 
+khoang cach tu 4 den 2 la: 2
+4 1 2 
+khoang cach tu 4 den 3 la: 5
+4 1 2 3 
+khoang cach tu 4 den 4 la: 0
+4 
+>>>>>>> Stashed changes
